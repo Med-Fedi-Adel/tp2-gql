@@ -1,0 +1,68 @@
+type Query {
+  getAllCv: [Cv!]
+  getCvByID(id: ID!): Cv!
+}
+
+type Mutation {
+  addCv(addCvInput: CvAddInput): Cv!
+  updateCv(id: ID!, updateCvInput: CvUpdateInput): Cv!
+  deleteCv(id: ID!): Cv!
+}
+
+type Subscription {
+  notifyCv: CvSubscriptionReturn!
+}
+
+enum UserRole {
+  ADMIN
+  USER
+}
+
+type Cv {
+  id: ID!
+  name: String!
+  age: Int!
+  job: String!
+  owner: User!
+  skills: [Skill!]!
+}
+
+type Skill {
+  id: ID!
+  designation: String!
+}
+
+type User {
+  id: ID!
+  email: String!
+  name: String!
+  role: UserRole!
+  cvs: [Cv!]
+}
+
+input CvAddInput {
+  name: String!
+  age: Int!
+  job: String!
+  owner: String!
+  skills: [String!]!
+}
+
+input CvUpdateInput {
+  name: String
+  age: Int
+  job: String
+  owner: String
+  skills: [String!]
+}
+
+enum MutationType {
+  ADD
+  UPDATE
+  DELETE
+}
+
+type CvSubscriptionReturn {
+  cv: Cv!
+  mutation: MutationType!
+}
