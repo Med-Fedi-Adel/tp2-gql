@@ -1,5 +1,5 @@
 type Query {
-  getAllCv: [Cv!]
+  getAllCv: [Cv!]!
   getCvByID(id: ID!): Cv!
 }
 
@@ -23,6 +23,7 @@ type Cv {
   name: String!
   age: Int!
   job: String!
+  ownerId: ID!
   owner: User!
   skills: [Skill!]!
 }

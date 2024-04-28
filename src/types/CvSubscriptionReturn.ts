@@ -7,6 +7,6 @@ export enum MutationType {
 }
 
 export type CvSubscriptionReturn = {
-  cv: CvWithSkills;
+  cv: any;
   mutation: MutationType;
 };

@@ -3,9 +3,10 @@ import { schema } from "./schema";
 import { db } from "./db/db";
 import { pubSub } from "./pubsub";
 import { createYoga } from "graphql-yoga";
+import { createContext } from "./prisma-client";
 
-function main() {
-  const yoga = createYoga({ schema, context: { db, pubSub } });
+async function main() {
+  const yoga = createYoga({ schema, context: { db, pubSub, createContext } });
   const server = createServer(yoga);
 
   server.listen(4000, () => {

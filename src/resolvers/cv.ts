@@ -9,21 +9,13 @@ import {
 } from "../types";
 
 export const Cv = {
-  owner: ({ owner }: CvType, _: {}, { db }: Context): User => {
-    const foundOwner = db.users.find((user: User) => user.id === owner);
-    if (!foundOwner) {
-      throw new GraphQLError(`User with id ${owner} not found`);
-    }
-    return foundOwner;
+  owner: ({ owner }: CvType, _: {}, { db }: Context) => {
+    // console.log("HERE IS THE OWNER", owner);
+
+    return owner;
   },
 
-  skills: ({ id, skills }: CvWithSkills, _: {}, { db }: Context): Skill[] => {
-    return skills.map((skillId: string) => {
-      const foundSkill = db.skills.find((skill: Skill) => skill.id === skillId);
-      if (!foundSkill) {
-        throw new GraphQLError(`Skill with id ${skillId} not found`);
-      }
-      return foundSkill;
-    });
+  skills: ({ id, skills }: CvWithSkills, _: {}, { db }: Context) => {
+    return skills;
   },
 };
